@@ -1,4 +1,8 @@
-/* Navbar Login/Logout butonu için belirgin ve modern stil */
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+
 .navbar-login-btn {
   @apply px-4 py-1 rounded-full font-semibold bg-orange-500 text-white border-none shadow transition-all duration-200;
   font-size: 0.97rem;
@@ -15,13 +19,12 @@
   transform: scale(0.97);
 }
 
-@import "tailwindcss";
-@plugin "daisyui";
+
 
 
 .login-btn,
 button[type="submit"] {
-  @apply rounded-md bg-orange-500 text-white font-semibold  px-4 py-2 shadow-sm transition-all duration-200;
+  @apply rounded-md bg-orange-500 text-white font-semibold px-4 py-2 shadow-sm transition-all duration-200;
   box-shadow: 0 2px 8px 0 rgba(94, 54, 5, 0.733);
 }
 
@@ -42,7 +45,7 @@ button[type="submit"]:active {
 /* Sade ve şık logo */
 .site-logo,
 .navbar .btn-ghost.text-xl {
-  @apply font-extrabold text-orange-500 tracking-wide text-lg md:text-2xl -ms-5 md:ms-0  transition-all duration-200;
+  @apply font-extrabold text-orange-500 tracking-wide text-lg md:text-2xl -ms-5 md:ms-0 transition-all duration-200;
   text-shadow: 0 2px 8px rgba(255, 140, 0, 0.08);
 }
 
@@ -77,4 +80,33 @@ button[type="submit"]:active {
   }
 
 
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #444;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin: 20px auto;
 }
