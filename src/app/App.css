@@ -1,0 +1,80 @@
+/* Navbar Login/Logout butonu için belirgin ve modern stil */
+.navbar-login-btn {
+  @apply px-4 py-1 rounded-full font-semibold bg-orange-500 text-white border-none shadow transition-all duration-200;
+  font-size: 0.97rem;
+  letter-spacing: 0.02em;
+}
+
+.navbar-login-btn:hover {
+  @apply bg-orange-400 text-white shadow-lg;
+  transform: translateY(-1.5px) scale(1.045);
+}
+
+.navbar-login-btn:active {
+  @apply bg-orange-600;
+  transform: scale(0.97);
+}
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+.login-btn,
+button[type="submit"] {
+  @apply rounded-md bg-orange-500 text-white font-semibold  px-4 py-2 shadow-sm transition-all duration-200;
+  box-shadow: 0 2px 8px 0 rgba(94, 54, 5, 0.733);
+}
+
+.login-btn:hover,
+button[type="submit"]:hover {
+  @apply bg-orange-600;
+  box-shadow: 0 4px 16px 0 rgba(255, 140, 0, 0.16);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.login-btn:active,
+button[type="submit"]:active {
+  @apply bg-orange-700;
+  box-shadow: 0 2px 8px 0 rgba(255, 140, 0, 0.10);
+  transform: scale(0.98);
+}
+
+/* Sade ve şık logo */
+.site-logo,
+.navbar .btn-ghost.text-xl {
+  @apply font-extrabold text-orange-500 tracking-wide text-lg md:text-2xl -ms-5 md:ms-0  transition-all duration-200;
+  text-shadow: 0 2px 8px rgba(255, 140, 0, 0.08);
+}
+
+
+@layer base {
+
+  body {
+    @apply w-full;
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+  }
+
+  html {
+    overflow-y: scroll;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply py-2 px-3 font-semibold;
+  }
+
+
+  .Toastify__toast {
+    min-height: 45px;
+    font-size: 14px;
+  }
+
+  .Toastify__toast--success .Toastify__toast-icon svg {
+    fill: #064911;
+    /* İstediğin rengin kodunu buraya yazabilirsin */
+  }
+
+
+}
