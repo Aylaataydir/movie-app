@@ -1,16 +1,14 @@
 
+import MovieList from '@/components/MovieList'
 import React from 'react'
 
 
 const Home = () => {
 
 
-    return (
+        return (
         <div>
-        <div>
-        </div>
-           
-      
+            <MovieList />
         </div>
     )
 }
