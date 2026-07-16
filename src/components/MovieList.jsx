@@ -3,36 +3,48 @@
 
 import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import MovieCard from './MovieCard';
 
-const MovieList = () => {
+const MovieList = ({ title, movies }) => {
 
     const [swiperRef, setSwiperRef] = useState(null);
 
     return (
-        <div>
+        <section>
+            {title && (
+                <div className="mb-4 flex items-center gap-3">
+                    <span className="h-5 w-1 rounded-full bg-orange-500" />
+                    <h2 className="text-lg font-bold tracking-tight text-white md:text-xl">
+                        {title}
+                    </h2>
+                </div>
+            )}
             <Swiper
                 onSwiper={setSwiperRef}
-                slidesPerView={3}
-                centeredSlides={true}
+                slidesPerView="auto"
+                slidesPerGroup={2}
+                loop={false}
+                centeredSlides={false}
                 spaceBetween={30}
-                pagination={{
-                    type: 'fraction',
-                }}
                 navigation={true}
-                modules={[Pagination, Navigation]}
+                speed={2000}
+                modules={[Navigation]}
                 className="mySwiper"
             >
-                <SwiperSlide>Slide 1</SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
+
+                {movies?.map(movie => (
+                    <SwiperSlide key={movie.id} className="!w-40 md:!w-44 lg:!w-48">
+                        <MovieCard movie={movie} />
+                    </SwiperSlide>
+                ))}
+
+
             </Swiper>
 
-        </div>
+        </section>
     )
 }
 

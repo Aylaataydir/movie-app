@@ -1,12 +1,15 @@
 "use client"
 
-import { createContext, useEffect, useState } from "react";
+import { toastError } from "@/helpers/ToastNotify";
+import { createContext, useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 
 export const MovieContext = createContext()
 
 const MovieContextProvider = ({ children }) => {
 
+    const { currentUser } = useContext(AuthContext)
 
     const [watched, setWatched] = useState([])
     const [watchlist, setWatchlist] = useState([])
@@ -22,6 +25,18 @@ const MovieContextProvider = ({ children }) => {
 
 
     const toggleList = (movie, listName) => {
+
+        if (!currentUser) {
+            const messages = {
+                watchlist: "Please log in to add movies to your watchlist",
+                watched: "Please log in to mark movies as watched",
+                favorites: "Please log in to add movies to your favorites",
+            }
+
+              toastError(messages[listName] || "Please log in to continue")
+
+            return
+        }
 
         switch (listName) {
             case "watched":
@@ -72,7 +87,7 @@ const MovieContextProvider = ({ children }) => {
 
 
     return (
-        <MovieContext.Provider value={{watched, watchlist, favorites, toggleList, theme}}>
+        <MovieContext.Provider value={{ watched, watchlist, favorites, toggleList, theme }}>
             {children}
         </MovieContext.Provider>
     )
