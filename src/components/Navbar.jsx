@@ -78,7 +78,7 @@ const Navbar = () => {
                             </li>
                         </ul>
                     </div>
-                    <Link href="/" className="site-logo btn btn-ghost text-xl">MOVIE APP</Link>
+                    <Link href="/" className="site-logo btn btn-ghost text-xl">MOOVIO</Link>
                 </div>
 
                 <div className="navbar-center hidden lg:flex">

@@ -6,7 +6,7 @@ import './App.css'
 import Navbar from "@/components/Navbar";
 
 export const metadata = {
-  title: "Movie App",
+  title: "Moovio",
   description: "A movie platform",
 };
 
