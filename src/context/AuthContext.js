@@ -43,14 +43,13 @@ const AuthContextProvider = ({ children }) => {
 
 
 
-  const login = async (email, password) => {
+  const login = async (email, password, redirectTo = "/") => {
 
     try {
 
-      await signInWithEmailAndPassword(auth, email, password, redirectTo= "/");
+      await signInWithEmailAndPassword(auth, email, password);
       router.push(redirectTo);
       toastSuccess("Logged in Successfully");
-      console.log(currentUser)
     } catch (error) {
       toastError("Something went wrong. Please try again.");
     }
