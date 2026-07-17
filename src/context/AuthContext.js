@@ -51,7 +51,8 @@ const AuthContextProvider = ({ children }) => {
       router.push(redirectTo);
       toastSuccess("Logged in Successfully");
     } catch (error) {
-      toastError("Something went wrong. Please try again.");
+      console.error("login error:", error);
+      toastError(error.message);
     }
   };
 
@@ -69,6 +70,8 @@ const AuthContextProvider = ({ children }) => {
 
     } catch (error) {
       toastError("Something went wrong. Please try again.")
+       console.error("login error:", error);
+      toastError(error.message);
     }
   }
 
@@ -81,6 +84,7 @@ const AuthContextProvider = ({ children }) => {
       toastSuccess("logout is successfully");
     } catch (error) {
       toastError(error.message);
+      
     }
 
   };
