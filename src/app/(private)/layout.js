@@ -2,16 +2,19 @@
 'use client'
 
 import { useContext, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { AuthContext } from '@/context/AuthContext'
 
 export default function PrivateLayout({ children }) {
-    const { currentUser, loading } = useContext(AuthContext)
+    const { currentUser,loading } = useContext(AuthContext)
+
     const router = useRouter()
+    const pathname = usePathname()
+
 
     useEffect(() => {
         if (!loading && !currentUser) {
-            router.push('/login')
+            router.push(`/login?redirect=${pathname}`)
         }
     }, [loading, currentUser, router])
 

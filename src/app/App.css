@@ -1,7 +1,67 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-base-100: #0f172a;
+  --color-base-200: #1a2436;
+  --color-base-300: #263349;
+  --color-base-content: #f1f5f9;
+  --color-primary: #f97316;
+  --color-primary-content: #ffffff;
+  --color-secondary: #fb923c;
+  --color-secondary-content: #1a1a1a;
+  --color-accent: #38bdf8;
+  --color-accent-content: #082f49;
+  --color-neutral: #1a2436;
+  --color-neutral-content: #f1f5f9;
+  --color-info: #38bdf8;
+  --color-info-content: #06232f;
+  --color-success: #22c55e;
+  --color-success-content: #052e12;
+  --color-warning: #f97316;
+  --color-warning-content: #431407;
+  --color-error: #f43f5e;
+  --color-error-content: #4c0519;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --border: 1px;
+}
 
+[data-theme="light"] {
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f5f5f5;
+  --color-base-300: #e5e5e5;
+  --color-base-content: #171717;
+  --color-primary: #f97316;
+  --color-primary-content: #ffffff;
+  --color-secondary: #fb923c;
+  --color-secondary-content: #431407;
+  --color-accent: #0ea5e9;
+  --color-accent-content: #ffffff;
+  --color-neutral: #e5e5e5;
+  --color-neutral-content: #171717;
+  --color-info: #0ea5e9;
+  --color-info-content: #ffffff;
+  --color-success: #16a34a;
+  --color-success-content: #ffffff;
+  --color-warning: #f97316;
+  --color-warning-content: #431407;
+  --color-error: #e11d48;
+  --color-error-content: #ffffff;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --border: 1px;
+}
+
+body {
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
 
 .navbar-login-btn {
   @apply px-4 py-1 rounded-full font-semibold bg-orange-500 text-white border-none shadow transition-all duration-200;
@@ -69,17 +129,70 @@ button[type="submit"]:active {
   }
 
 
-  .Toastify__toast {
-    min-height: 45px;
-    font-size: 14px;
-  }
+}
 
-  .Toastify__toast--success .Toastify__toast-icon svg {
-    fill: #064911;
-    /* İstediğin rengin kodunu buraya yazabilirsin */
-  }
+:root {
+  --toastify-color-dark: #171717;
+  --toastify-text-color-dark: #f5f5f5;
 
+  --toastify-icon-color-success: #22c55e;
+  --toastify-icon-color-error: #f43f5e;
+  --toastify-icon-color-warning: #f97316;
+  --toastify-icon-color-info: #38bdf8;
 
+  --toastify-color-progress-success: #22c55e;
+  --toastify-color-progress-error: #f43f5e;
+  --toastify-color-progress-warning: #f97316;
+  --toastify-color-progress-info: #38bdf8;
+}
+
+.Toastify__toast-container {
+  --toastify-toast-width: 360px;
+  padding: 0.5rem;
+}
+
+.Toastify__toast {
+  min-height: 48px;
+  padding: 0.85rem 1rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  border-radius: 0.9rem;
+  background: linear-gradient(180deg, rgba(38, 38, 38, 0.97), rgba(23, 23, 23, 0.97));
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.Toastify__toast-body {
+  color: #f5f5f5;
+  align-items: flex-start;
+}
+
+.Toastify__close-button {
+  color: #f5f5f5;
+  opacity: 0.55;
+  align-self: center;
+  transition: opacity 0.2s ease;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+.Toastify__progress-bar {
+  height: 3px;
+  border-radius: 0 0 0.9rem 0.9rem;
+}
+
+.Toastify__toast--success {
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(34, 197, 94, 0.25);
+}
+
+.Toastify__toast--error {
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(244, 63, 94, 0.25);
+}
+
+.Toastify__toast--warning {
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(249, 115, 22, 0.3);
 }
 
 .swiper {

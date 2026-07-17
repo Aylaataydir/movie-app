@@ -8,9 +8,11 @@ const MovieCard = ({ movie }) => {
     const year = release_date ? new Date(release_date).getFullYear() : "—"
     const posterPath = poster_path || backdrop_path
 
+    console.log(movie)
+
     return (
-        <div className="group relative w-full overflow-hidden rounded-2xl bg-neutral-900 shadow-lg ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-orange-900/30 hover:ring-orange-500/50">
-            <div className="relative aspect-4/5 w-full overflow-hidden bg-neutral-800">
+        <div className="group relative w-full overflow-hidden rounded-2xl bg-base-200 shadow-lg shadow-black/30 ring-1 ring-base-content/15 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-orange-900/30 hover:ring-orange-500/50">
+            <div className="relative aspect-8/9 w-full overflow-hidden bg-base-300">
                 {posterPath ? (
                     <img
                         src={`https://image.tmdb.org/t/p/w500${posterPath}`}
@@ -19,7 +21,7 @@ const MovieCard = ({ movie }) => {
                         className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                     />
                 ) : (
-                    <div className="flex h-full w-full items-center justify-center text-neutral-600">
+                    <div className="flex h-full w-full items-center justify-center text-base-content/40">
                         <FaFilm className="h-10 w-10" />
                     </div>
                 )}
@@ -32,7 +34,7 @@ const MovieCard = ({ movie }) => {
                 </div>
 
                 <Link
-                    href={`/movie-detail/${movie.id}`}
+                    href={`/movie/${movie.id}`}
                     className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-100"
                 >
                     <span className="rounded-full bg-orange-500 px-4 py-1.5 text-xs font-semibold tracking-wide text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-orange-400">
@@ -44,8 +46,8 @@ const MovieCard = ({ movie }) => {
             </div>
 
             <div className="px-3 py-2">
-                <h2 className="line-clamp-1 text-sm font-semibold text-white">{title}</h2>
-                <span className="text-xs text-neutral-400">{year}</span>
+                <h2 className="line-clamp-1 text-sm font-semibold text-base-content">{title}</h2>
+                <span className="text-xs text-base-content/60">{year}</span>
             </div>
         </div>
     )

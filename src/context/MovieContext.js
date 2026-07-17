@@ -20,6 +20,7 @@ const MovieContextProvider = ({ children }) => {
         setWatched(JSON.parse(localStorage.getItem("watched")) || [])
         setWatchlist(JSON.parse(localStorage.getItem("watchlist")) || [])
         setFavorites(JSON.parse(localStorage.getItem("favorites")) || [])
+        setTheme(localStorage.getItem("theme") || "dark")
     }, [])
 
 
@@ -82,12 +83,13 @@ const MovieContextProvider = ({ children }) => {
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
     }, [theme])
 
 
 
     return (
-        <MovieContext.Provider value={{ watched, watchlist, favorites, toggleList, theme }}>
+        <MovieContext.Provider value={{ watched, watchlist, favorites, toggleList, theme, setTheme }}>
             {children}
         </MovieContext.Provider>
     )

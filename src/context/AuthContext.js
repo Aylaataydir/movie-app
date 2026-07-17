@@ -2,12 +2,10 @@
 import { auth } from "@/auth/firebase"
 import { toastError, toastSuccess, toastWarn, } from "@/helpers/ToastNotify"
 import { EmailAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, reauthenticateWithCredential, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updatePassword, updateProfile } from "firebase/auth"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 // next.js projesinde reaccta ait hookk kullanacaksak use client yazmaliyiz.
 
 import { createContext, useEffect, useState } from "react"
-
-
 
 
 export const AuthContext = createContext()
@@ -15,15 +13,16 @@ export const AuthContext = createContext()
 const AuthContextProvider = ({ children }) => {
 
   const [currentUser, setCurrrentUser] = useState('')
-
+  const [loading, setLoading] = useState(true)
 
   //nextjs in navigasyon hooku
   const router = useRouter()
 
 
+
   // new User
 
-  const createUser = async (email, password, displayName) => {
+  const createUser = async (email, password, displayName, redirectTo="/") => {
 
     try {
 
@@ -34,7 +33,7 @@ const AuthContextProvider = ({ children }) => {
       })
 
       toastSuccess(`Welcome ${displayName}`)
-      router.push('/profile')
+      router.push(redirectTo)
 
     } catch (error) {
       toastError(error.message)
@@ -48,8 +47,8 @@ const AuthContextProvider = ({ children }) => {
 
     try {
 
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push("/profile");
+      await signInWithEmailAndPassword(auth, email, password, redirectTo= "/");
+      router.push(redirectTo);
       toastSuccess("Logged in Successfully");
       console.log(currentUser)
     } catch (error) {
@@ -59,13 +58,13 @@ const AuthContextProvider = ({ children }) => {
 
 
 
-  const signUpWithGoogle = async () => {
+  const signUpWithGoogle = async (redirectTo="/") => {
 
     const provider = new GoogleAuthProvider();
 
     try {
       await signInWithPopup(auth, provider)
-      router.push("/profile");
+      router.push(redirectTo);
       toastSuccess("Logged in Successfully");
       console.log(currentUser)
 
@@ -78,9 +77,9 @@ const AuthContextProvider = ({ children }) => {
   const logout = async () => {
 
     try {
+      router.push("/");
       await signOut(auth);
       toastSuccess("logout is successfully");
-      router.push("/login");
     } catch (error) {
       toastError(error.message);
     }
@@ -139,6 +138,8 @@ const AuthContextProvider = ({ children }) => {
         setCurrrentUser(false)
       }
 
+      setLoading(false)
+
     })
   }
 
@@ -148,7 +149,7 @@ const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ createUser, currentUser, signUpWithGoogle, login, logout, forgotPassword, updateUserProfile, changeUserPassword }}>
+    <AuthContext.Provider value={{ createUser, currentUser, loading, signUpWithGoogle, login, logout, forgotPassword, updateUserProfile, changeUserPassword }}>
       {children}
     </AuthContext.Provider>
   )

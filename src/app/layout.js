@@ -12,13 +12,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <body>
         <AuthContextProvider>
           <MovieContextProvider>
             <Navbar />
-            {children}
-            <ToastContainer />
+            <main className="mx-auto w-full max-w-360">
+              {children}
+            </main>
+            <ToastContainer
+              theme="dark"
+              position="top-right"
+              newestOnTop
+              toastClassName="app-toast"
+            />
           </MovieContextProvider>
         </AuthContextProvider>
       </body>

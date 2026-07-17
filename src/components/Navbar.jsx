@@ -2,18 +2,18 @@
 
 
 import { AuthContext } from '@/context/AuthContext';
+import { MovieContext } from '@/context/MovieContext';
 import { usePathname, useRouter } from 'next/navigation';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Link from 'next/link'
-
 import { TiThMenu } from 'react-icons/ti'
-import Search from './Search';
+
 
 
 const Navbar = () => {
 
-    const [theme, setTheme] = useState("dark")
     const { currentUser, logout } = useContext(AuthContext)
+    const { theme, setTheme } = useContext(MovieContext)
 
     const router = useRouter()
     const pathName = usePathname()
@@ -49,8 +49,8 @@ const Navbar = () => {
 
 
     return (
-        <div className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur-md">
-            <div className="navbar mx-auto max-w-7xl px-4 md:px-10">
+        <div className="sticky top-0 z-50 border-b border-base-content/10 bg-base-100/80 backdrop-blur-md">
+            <div className="navbar mx-auto max-w-360 px-4 md:px-10">
                 <div className="navbar-start gap-2">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -58,10 +58,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex="-1"
-                            className="menu menu-sm dropdown-content z-1 mt-3 w-64 gap-1 rounded-box bg-neutral-900 p-3 shadow-2xl ring-1 ring-white/10">
-                            <li className="mb-1">
-                                <Search />
-                            </li>
+                            className="menu menu-sm dropdown-content z-1 mt-3 w-64 gap-1 rounded-box bg-base-200 p-3 shadow-2xl ring-1 ring-base-content/10">
                             {navLinks.map(link => (
                                 <li key={link.href} className='nav-link'>
                                     <Link
@@ -90,8 +87,8 @@ const Navbar = () => {
                             <li key={link.href}>
                                 <Link
                                     href={link.href}
-                                    className={`relative font-medium text-neutral-300 transition-colors hover:text-white after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:rounded-full after:bg-orange-500 after:transition-all after:duration-300 ${isActive(link.href)
-                                        ? "text-white after:w-full"
+                                    className={`relative font-medium text-base-content/70 transition-colors hover:text-base-content after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:rounded-full after:bg-orange-500 after:transition-all after:duration-300 ${isActive(link.href)
+                                        ? "text-base-content after:w-full"
                                         : "after:w-0 hover:after:w-full"
                                         }`}
                                 >
@@ -106,9 +103,7 @@ const Navbar = () => {
                   
 
                     {/* THEME */}
-                    <label
-                        onClick={toggleTheme}
-                        className="flex cursor-pointer gap-2 scale-75">
+                    <label className="flex cursor-pointer gap-2 scale-75">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20" height="20" viewBox="0 0 24 24"
@@ -116,7 +111,12 @@ const Navbar = () => {
                             strokeLinecap="round" strokeLinejoin="round">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
-                        <input type="checkbox" value="synthwave" className="toggle theme-controller" />
+                        <input
+                            type="checkbox"
+                            checked={theme === "light"}
+                            onChange={toggleTheme}
+                            className="toggle"
+                        />
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20" height="20" viewBox="0 0 24 24"
@@ -131,7 +131,7 @@ const Navbar = () => {
                         <div className="avatar flex items-center space-x-2">
                             <p className='hidden text-sm md:block'>{currentUser?.displayName}</p>
                             <div className="ring- ring-offset-base-100 w-7 rounded-full ring-1 ring-offset-2">
-                                <img src="https://muratyurtoglu.com/wp-content/uploads/bos-profil-resmi.jpg" />
+                                <img src="https://wallpapers.com/images/hd/blank-default-pfp-wue0zko1dfxs9z2c.jpg" />
                             </div>
                         </div>
                     }
