@@ -70,8 +70,6 @@ const AuthContextProvider = ({ children }) => {
 
     } catch (error) {
       toastError("Something went wrong. Please try again.")
-       console.error("login error:", error);
-      toastError(error.message);
     }
   }
 
