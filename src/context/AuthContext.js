@@ -32,6 +32,8 @@ const AuthContextProvider = ({ children }) => {
         displayName,
       })
 
+      setCurrrentUser((prev) => ({ ...prev, displayName }))
+
       toastSuccess(`Welcome ${displayName}`)
       router.push(redirectTo)
 
